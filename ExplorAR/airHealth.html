@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Air-Quality</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="img/logo.jpeg" rel="icon">
+  <link href="img/logo.jpeg" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/airhealth.css">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+</head>
+<html>
+    
+    <body>
+        <div class="bdy">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="con-heading">
+                        The Air Quality Tree.
+                    </h2>
+                </div>
+                <div class="col-12 justify-content-center button-container">
+                    <button onclick="getLocation()" class="btn btn-lg btn-light btn-hover-light">Try It</button>
+                    <a type="button" href="index.html" class="btn btn-lg btn-dark btn-hover">explorAR</a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="desc-container"> -->
+            <div class="card-folder">
+            <div class="card">
+                <img src="img/aqi1.jpg" alt="aqi1" />
+                <div class="card-body">
+                    <h6>Fresh</h6>
+                    <p>If you get this tree in the AR. That means you live in an area with fresh Air Quality and you can get out and breathe in the fresh Air.</p>
+                    <div>
+                        <!-- <a href="#">Read More</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/aqi2.jpg" alt="aqi2" />
+                <div class="card-body">
+                    <h6>Good</h6>
+                    <p>If you get this tree in the AR. That means you live in an area with good Air Quality and you can go out for walks in the morning and do some Yoga.</p>
+                    <div>
+                        <!-- <a href="#">Read More</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/aqi3.jpg" alt="aqi3"/>
+                <div class="card-body">
+                    <h6>Moderate</h6>
+                    <p>If you get this tree in the AR. That means you live in an area with moderate Air Quality, although its harmless but it is advisable not to go outside during high traffic times.</p>
+                    <div>
+                        <!-- <a href="#">Read More</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/aqi4.jpg" alt="aqi4"/>
+                <div class="card-body">
+                    <h6>Bad</h6>
+                    <p>If you get this tree in the AR. That means you live in an area with bad Air Quality, it is advisable not to spend much time outside as there are many harmful particles in the air around you.</p>
+                    <div>
+                        <!-- <a href="#">Read More</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="img/aqi5.jpg" alt="aqi5"/>
+                <div class="card-body">
+                    <h6>Highly Polluted</h6>
+                    <p>If you get this tree in the AR. That means you live in an area with worst Air Quality, don't go out unless necessary. Although it is pandemic time but still never forget your mask :&#40; .</p>
+                    <div>
+                        <!-- <a href="#">Read More</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-primary" id="feature-title">
+                            Air Quality Tree
+                        </h4>
+                    </div>
+                    <div class="modal-body" id="feature-info">
+                        <div id="echoar">
+                            <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="ok" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+        <script>
+            var x = document.getElementById("content");
+            
+            //   $("button").click(getLocation());
+            
+            function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        
+        function showPosition(position) {
+            const API_KEY = "01876191fd50c255971302ebdc124040";
+
+            var data = $.get(
+                `https://api.openweathermap.org/data/2.5/air_pollution?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${API_KEY}`,
+                function (data) {
+                    console.log(data);
+                    const API_KEY = "fragrant-mountain-7260";
+                    let aqi = data.list[0].main.aqi;
+                    console.log("aqi", aqi);
+                    let ENTRY = "";
+                    if (aqi == 5) {
+                        ENTRY = "08f2b75f-3fae-4b1d-b478-3e805b97b5ac";
+                    } else if (aqi == 4) {
+                        ENTRY = "6d8e282f-beaa-45a0-8540-8d7abdb9ee57";
+                    } else if (aqi == 3) {
+                        ENTRY = "94861155-60db-422a-8a70-5e1411ea0505";
+                    } else if (aqi == 2) {
+                        ENTRY = "2422bc29-2d5d-4277-b70b-d4789ec01666";
+                    } else if (aqi == 1) {
+                        ENTRY = "3373896e-8a46-46cd-a50f-aa89640b048c";
+                    }
+                    $.post(
+                        `https://console.echoAR.xyz/post?key=${API_KEY}&entry=${ENTRY}&data=aqi&value=${aqi}`,
+                        function (data) {
+                            $(document).ready(function () {
+                                $("#echoar").load(
+                                    `https://console.echoAR.xyz/webar?key=${API_KEY}&entry=${ENTRY}`
+                                );
+                            });
+                            $("#featureModal").modal("show");
+                        }
+                    );
+                }
+            );
+            // console.log(data);
+            // console.log("hello");
+
+            x.innerHTML = "Loading . . . ";
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred.";
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
